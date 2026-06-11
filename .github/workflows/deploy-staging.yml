@@ -30,11 +30,11 @@ jobs:
         run: |
           docker build \
             -f apps/api/Dockerfile \
-            -t ${{ steps.login-ecr.outputs.registry }}/myapp-api:staging-$IMAGE_TAG \
-            -t ${{ steps.login-ecr.outputs.registry }}/myapp-api:staging \
+            -t ${{ steps.login-ecr.outputs.registry }}/queue-view/api:staging-$IMAGE_TAG \
+            -t ${{ steps.login-ecr.outputs.registry }}/queue-view/api:staging \
             .
-          docker push ${{ steps.login-ecr.outputs.registry }}/myapp-api:staging-$IMAGE_TAG
-          docker push ${{ steps.login-ecr.outputs.registry }}/myapp-api:staging
+          docker push ${{ steps.login-ecr.outputs.registry }}/queue-view/api:staging-$IMAGE_TAG
+          docker push ${{ steps.login-ecr.outputs.registry }}/queue-view/api:staging
 
       - name: Build & push Web image
         env:
@@ -42,11 +42,11 @@ jobs:
         run: |
           docker build \
             -f apps/web/Dockerfile \
-            -t ${{ steps.login-ecr.outputs.registry }}/myapp-web:staging-$IMAGE_TAG \
-            -t ${{ steps.login-ecr.outputs.registry }}/myapp-web:staging \
+            -t ${{ steps.login-ecr.outputs.registry }}/queue-view/web:staging-$IMAGE_TAG \
+            -t ${{ steps.login-ecr.outputs.registry }}/queue-view/web:staging \
             .
-          docker push ${{ steps.login-ecr.outputs.registry }}/myapp-web:staging-$IMAGE_TAG
-          docker push ${{ steps.login-ecr.outputs.registry }}/myapp-web:staging
+          docker push ${{ steps.login-ecr.outputs.registry }}/queue-view/web:staging-$IMAGE_TAG
+          docker push ${{ steps.login-ecr.outputs.registry }}/queue-view/web:staging
 
       - name: Deploy to EC2 Staging
         uses: appleboy/ssh-action@v1
