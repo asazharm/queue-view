@@ -14,6 +14,5 @@ FROM oven/bun:1-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build /app/dist/server.js ./server.js
-COPY --from=build /app/apps/api/public ./public
 EXPOSE 3000
 CMD ["bun", "run", "server.js"]
