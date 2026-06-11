@@ -1,0 +1,16 @@
+services:
+  api:
+    image: ${ECR_REGISTRY}/queue-view/api:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file: .env.production
+
+  web:
+    image: ${ECR_REGISTRY}/queue-view/web:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api
